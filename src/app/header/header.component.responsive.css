@@ -1,0 +1,23 @@
+@media (max-width: 1400px) {
+  #home .hero-content {
+    opacity: 1 !important;
+  }
+
+  .buy-btn {
+    transform: translate(-0.25rem, -0.25rem);
+    box-shadow: 0.25rem 0.25rem var(--button-color-light);
+  }
+
+  .buy-btn:hover {
+    box-shadow: 0.25rem 0.25rem var(--button-color-light);
+  }
+}
+
+@media (max-width: 1024px) {
+  #home .hero-content {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+}
