@@ -6,9 +6,16 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { AboutComponent } from './about/about.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HeaderComponent, AboutComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HeaderComponent,
+    AboutComponent,
+    MenuComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

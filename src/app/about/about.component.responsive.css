@@ -4,12 +4,11 @@
   }
 
   .about-content {
-    margin-top: 2rem;
-    max-width: 90%;
+    max-width: 95%;
     text-align: center;
     gap: 1rem !important;
-    margin: 2rem 1rem 0;
-    text-align: start;
+    margin: 3rem auto 0;
+    align-items: center;
   }
 
   .about-desc {
