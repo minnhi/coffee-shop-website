@@ -150,3 +150,10 @@
     min-width: 50%;
   }
 }
+
+@media (max-width: 1024px) {
+  .item-main-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

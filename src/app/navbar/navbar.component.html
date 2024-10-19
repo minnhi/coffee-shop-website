@@ -1,74 +1,49 @@
 <nav
-  class="navbar fixed-top navbar-dark bg-body-tertiary bg-opacity-10 shadow fixed-top p-3"
+  class="navbar navbar-expand-md fixed-top navbar-dark bg-body-tertiary bg-opacity-50 shadow p-3"
   id="navbar"
 >
   <div class="container-fluid">
-    <a
-      href="#offcanvasNavbar"
-      data-bs-toggle="offcanvas"
-      aria-controls="offcanvasNavbar"
+    <a class="navbar-brand text-capitalize fw-bold" href="#"> coffee shop </a>
+    <button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
       aria-label="Toggle navigation"
-      class="me-auto"
+      class="bg-transparent d-md-none"
+      style="border: none"
+      (click)="toggleOpen()"
     >
       <i
         class="bi toggle-icon"
-        [ngClass]="ifoffCanvasOpen ? 'bi-toggle2-on' : 'bi-toggle2-off'"
+        [ngClass]="ifOpen ? 'bi-toggle2-on' : 'bi-toggle2-off'"
       ></i>
-    </a>
-    <a class="navbar-brand text-capitalize fw-bold mx-auto" href="#"
-      >coffee shop</a
-    >
-    <button class="login-btn ms-auto d-none d-md-block">
-      <span>login</span>
-      <svg width="15px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
     </button>
-    <div
-      class="offcanvas offcanvas-start bg-body-tertiary bg-opacity-10"
-      tabindex="-1"
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-    >
-      <div class="offcanvas-header">
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          data-bs-target="#offcanvasNavbar"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div
-        class="offcanvas-body d-flex align-items-center justify-content-center flex-column gap-5"
-      >
-        <ul class="navbar-nav pe-3 d-flex gap-5">
-          <li
-            class="nav-item"
-            *ngFor="let item of navItems"
-            (click)="setActive(item)"
-            [class.active]="item.active"
-            [attr.data-target]="item.name"
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto">
+        <li
+          class="nav-item"
+          *ngFor="let item of navItems"
+          (click)="setActive(item)"
+          [class.active]="item.active"
+          [attr.data-target]="item.name"
+        >
+          <a
+            class="nav-link d-flex align-items-center justify-content-between gap-3"
+            aria-current="page"
+            href="#{{ item.name }}"
           >
-            <a
-              class="nav-link d-flex justify-content-evenly align-items-center gap-2"
-              aria-current="page"
-              href="#!"
-            >
-              <i class="fas {{ item.icon }}"></i>
-              {{ item.name }}
-            </a>
-          </li>
-        </ul>
-        <button class="login-btn d-md-none">
-          <span class="text-capitalize">login</span>
-          <svg width="15px" height="10px" viewBox="0 0 13 10">
-            <path d="M1,5 L11,5"></path>
-            <polyline points="8 1 12 5 8 9"></polyline>
-          </svg>
-        </button>
-      </div>
+            <i class="fas {{ item.icon }}"></i>
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+
+      <button class="login-btn ms-auto">
+        <div class="login-btn-text">
+          <span class="fw-bolder text-capitalize">login</span>
+        </div>
+      </button>
     </div>
   </div>
 </nav>
