@@ -10,10 +10,11 @@ import { navList } from './nav-list';
 })
 export class NavbarComponent {
   navItems: navList[] = [
-    { name: 'home', active: false, icon: 'fa-home' },
-    { name: 'about', active: false, icon: 'fa-address-card' },
-    { name: 'product', active: false, icon: 'fa-th-list' },
-    { name: 'member', active: false, icon: 'fa-user-friends' },
+    { name: 'home', active: false },
+    { name: 'about', active: false },
+    { name: 'product', active: false },
+    { name: 'contact', active: false },
+    { name: 'member', active: false },
   ];
 
   ifOpen = false;

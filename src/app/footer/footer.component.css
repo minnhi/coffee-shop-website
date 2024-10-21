@@ -1,31 +1,32 @@
 .footer>.container-fluid {
-  background: var(--main-bg-color-dark);
+  background: #C8B6A6;
 }
 
 .info__name,
 .footer-links__title,
 .footer__subscribe-form {
-  color: var(--cream);
-  text-shadow: 1px 1px 1px var(--text-color-dark);
+  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 3rem;
 }
 
 .info__desc {
-  color: var(--cream);
-  text-shadow: 1px 1px 1px var(--text-color-dark);
+  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 1.6rem;
   text-align: justify;
 }
 
 .info__contact {
-  color: var(--cream);
-  text-shadow: 1px 1px 1px var(--text-color-dark);
+  text-shadow: 1px 1px 1px var(--primary-color);
 }
 
 .info__link {
   text-decoration: none;
-  color: var(--cream);
-  text-shadow: 1px 1px 1px var(--text-color-dark);
+  color: var(--sub-color);
+  text-shadow: 1px 1px 1px var(--primary-color);
+}
+
+.info__link:hover {
+  color: #b87630;
 }
 
 .footer-links__title,
@@ -37,13 +38,17 @@
   width: max-content;
 }
 
-a.footer-links__item {
+.footer-links__item {
   border: none;
   padding: 1rem;
   margin-left: 2rem;
-  color: var(--cream);
-  text-shadow: 1px 1px 1px var(--text-color-dark);
+  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 2rem;
+}
+
+
+.footer-links__item:hover {
+  color: #b87630;
 }
 
 .input-email {
@@ -52,7 +57,7 @@ a.footer-links__item {
 }
 
 .input-email {
-  background: var(--beige-light);
+  background: var(--primary-color);
 }
 
 .subcrisbe-summit {
@@ -60,7 +65,7 @@ a.footer-links__item {
   border-radius: 2rem;
   cursor: pointer;
   border: none;
-  background: linear-gradient(to right, var(--cream), var(--orange-light));
+  background: linear-gradient(to right, var(--primary-color), var(--primary-color));
   overflow: hidden;
   height: 55px;
 }
@@ -72,7 +77,6 @@ a.footer-links__item {
   display: inline-flex;
   align-items: center;
   padding: 0 1rem;
-  color: var(--text-color-dark);
 }
 
 .subcrisbe-summit::before,
@@ -87,7 +91,7 @@ a.footer-links__item {
 
 .subcrisbe-summit::before {
   content: "";
-  background: var(--beige-light);
+  background: #d2c9bd;
   width: 120%;
   left: -10%;
   transform: skew(30deg);

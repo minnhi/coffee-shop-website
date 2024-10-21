@@ -1,159 +1,85 @@
-.menu>.container-fluid {
-  max-width: 100vw;
-  overflow-x: hidden;
-  padding: 7rem 3rem 5rem;
-  background: var(--main-bg-color-light);
+.menu {
+  padding: 7rem 0;
+  background: #F1DEC9;
+  text-transform: capitalize;
 }
 
-.menu-heading {
+.menu a {
+  text-decoration: none;
+}
+
+.heading {
   font-size: 5rem;
-  color: var(--orange-light);
-  text-shadow: var(--text-shadow);
 }
 
-.item-name {
-  text-shadow: 1px 1px 1px #000;
-  color: var(--text-color-dark);
-  font-size: 3rem;
-}
-
-.item-price {
+.menu select {
+  text-transform: capitalize;
   font-size: 2rem;
-  color: var(--main-bg-color-dark);
-  text-shadow: 1px 1px 1px var(--text-color-light);
+  border-radius: 2rem;
 }
 
-.item-desc {
-  /* Tránh vỡ giao diện khi mô tả quá dài */
-  width: 95%;
-  white-space: nowrap;
+.menu .card {
+  background: var(--primary-color);
+  border-radius: 1rem;
+}
+
+.menu .list-item:hover> :not(:hover) {
+  opacity: .5;
+}
+
+.menu .card img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.menu .item-price,
+.menu .item-name {
+  font-size: 2rem;
+}
+
+.menu .item-name {
+  height: 3rem;
+}
+
+.menu .item-desc {
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 2rem;
-  color: var(--text-color-dark);
-  text-shadow: 1px 1px 1px var(--text-color-light);
+  white-space: nowrap;
 }
 
-/* item-buy-btn */
-.item-buy-btn {
-  width: 155px;
-  padding: 1.5rem 0;
+.sidebar-menu {
+  text-transform: capitalize;
+}
+
+.sidebar-menu button {
   border: none;
-  border-radius: 2rem;
-  color: var(--text-color-dark);
-  position: relative;
-  background-color: var(--button-color-light);
-  box-shadow: 2px 10px 15px -7px var(--olive-dark);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  overflow: hidden;
-  text-shadow: 1px 1px 1px var(--text-color-dark);
-}
-
-.cart {
-  z-index: 2;
-}
-
-.item-buy-btn:active {
-  transform: scale(0.96);
-}
-
-.product {
-  position: absolute;
-  width: 12px;
-  border-radius: 3px;
-  content: "";
-  left: 23px;
-  bottom: 23px;
-  opacity: 0;
-  z-index: 1;
-  fill: var(--text-color-dark);
-}
-
-.item-buy-btn:hover .product {
-  animation: slide-in-top 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-@keyframes slide-in-top {
-  0% {
-    transform: translateY(-30px);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0) rotate(-90deg);
-    opacity: 1;
-  }
-}
-
-.cartBtn:hover .cart {
-  animation: slide-in-left 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-@keyframes slide-in-left {
-  0% {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* view all menu */
-.view-all-btn {
-  width: max-content;
-  padding: 1rem 2rem;
-  background: var(--button-color-light);
-  border: 2px solid #000;
+  background: transparent;
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 1px 1px 1px #D0B8A8;
   font-size: 2rem;
-  color: var(--text-color-dark);
-  text-shadow: 1px 1px 1px var(--button-color-light);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s;
-  border-radius: 12px;
-  box-shadow: 0 2px 0 2px #000;
 }
 
-.view-all-btn:before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 120%;
-  background-color: var(--orange-light);
-  top: 50%;
-  transform: skewX(30deg) translate(-150%, -50%);
-  transition: all 0.5s;
+.sidebar-menu button:hover {
+  color: #AF8F6F;
 }
 
-.view-all-btn:hover {
-  background-color: var(--terracotta);
-  color: var(--text-color-dark);
-  box-shadow: 0 2px 0 2px #000;
+.sidebar-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.view-all-btn:hover::before {
-  transform: skewX(30deg) translate(150%, -50%);
-  transition-delay: 0.1s;
+.sidebar-menu-lv2 {
+  margin-left: 2rem;
 }
 
-.view-all-btn:active {
-  transform: scale(0.9);
+.modal-title {
+  font-size: 2rem;
 }
 
-@media (max-width: 768px) {
-  .item {
-    min-width: 50%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .item-main-info {
-    flex-direction: column;
-    gap: 1rem;
-  }
+.modal-img img {
+  max-height: 250px;
 }

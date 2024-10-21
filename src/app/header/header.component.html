@@ -1,14 +1,60 @@
 <header class="header" id="home">
   <div class="container-fluid position-relative">
     <div
-      class="hero-content position-absolute text-capitalize d-flex flex-column gap-5 align-items-center fw-bold"
+      id="header-carousel"
+      class="carousel header__carousel slide"
+      data-bs-ride="carousel"
     >
-      <h2 class="slogan text-center">
-        Lorem ipsum dolor sit amet consectetur <br />
-        adipisicing elit. Illo, eveniet.
-      </h2>
-      <h1 class="shop-name d-none d-md-block">coffee shop</h1>
-      <a href="#!" class="buy-btn">buy now</a>
+      <div class="carousel-inner header__carousel-inner">
+        <div
+          class="carousel-item header__carousel-item active"
+          data-bs-interval="5000"
+        >
+          <img
+            loading="lazy"
+            src="../../assets/imgs/header/banner-1.webp"
+            class="d-block w-100 header__carousel-img"
+            alt="header banner 1"
+          />
+        </div>
+        <div
+          class="carousel-item header__carousel-item"
+          data-bs-interval="2000"
+        >
+          <img
+            loading="lazy"
+            src="../../assets/imgs/header/banner-2.webp"
+            class="d-block w-100 header__carousel-img"
+            alt="header banner 2"
+          />
+        </div>
+        <div class="carousel-item header__carousel-item">
+          <img
+            loading="lazy"
+            src="../../assets/imgs/header/banner-3.webp"
+            class="d-block w-100 header__carousel-img"
+            alt="header banner 3"
+          />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev header__control-prev"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next header__control-next"
+        type="button"
+        data-bs-target="#header-carousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
   </div>
 </header>

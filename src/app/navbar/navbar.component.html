@@ -1,9 +1,8 @@
-<nav
-  class="navbar navbar-expand-md fixed-top navbar-dark bg-body-tertiary bg-opacity-50 shadow p-3"
-  id="navbar"
->
+<nav class="navbar navbar-expand-md fixed-top shadow-lg" id="navbar">
   <div class="container-fluid">
-    <a class="navbar-brand text-capitalize fw-bold" href="#"> coffee shop </a>
+    <a class="navbar-brand text-capitalize fw-bold me-auto" href="#">
+      coffee shop
+    </a>
     <button
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -33,7 +32,6 @@
             aria-current="page"
             href="#{{ item.name }}"
           >
-            <i class="fas {{ item.icon }}"></i>
             {{ item.name }}
           </a>
         </li>

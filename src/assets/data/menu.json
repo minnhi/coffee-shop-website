@@ -1,0 +1,353 @@
+[
+  {
+    "id": "conm1",
+    "main_group": "coffee",
+    "sub_group": "no-milk",
+    "name": "americano",
+    "price": 25000,
+    "description": "ahahahahâhahaaaaaaaaaaaaaaaahhhahahahahaahahah",
+    "image": "americano.webp"
+  },
+  {
+    "id": "conm2",
+    "main_group": "coffee",
+    "sub_group": "no-milk",
+    "name": "black coffee",
+    "price": 20000,
+    "description": "",
+    "image": "black-coffee.webp"
+  },
+  {
+    "id": "conm3",
+    "main_group": "coffee",
+    "sub_group": "no-milk",
+    "name": "cold brew",
+    "price": 22000,
+    "description": "",
+    "image": "cold-brew.webp"
+  },
+  {
+    "id": "conm4",
+    "main_group": "coffee",
+    "sub_group": "no-milk",
+    "name": "espresso",
+    "price": 23000,
+    "description": "",
+    "image": "espresso.webp"
+  },
+  {
+    "id": "comi1",
+    "main_group": "coffee",
+    "sub_group": "milk",
+    "name": "cappuccino",
+    "price": 30000,
+    "description": "",
+    "image": "cappuccino.webp"
+  },
+  {
+    "id": "comi3",
+    "main_group": "coffee",
+    "sub_group": "milk",
+    "name": "coffee latte",
+    "price": 22000,
+    "description": "",
+    "image": "coffee-latte.webp"
+  },
+  {
+    "id": "comi4",
+    "main_group": "coffee",
+    "sub_group": "milk",
+    "name": "macchiato",
+    "price": 22000,
+    "description": "",
+    "image": "macchiato.webp"
+  },
+  {
+    "id": "comi5",
+    "main_group": "coffee",
+    "sub_group": "milk",
+    "name": "milk coffee",
+    "price": 22000,
+    "description": "",
+    "image": "milk-coffee.webp"
+  },
+  {
+    "id": "coim9",
+    "main_group": "coffee",
+    "sub_group": "milk",
+    "name": "mocha",
+    "price": 22000,
+    "description": "",
+    "image": "mocha.webp"
+  },
+  {
+    "id": "icic1",
+    "main_group": "ice-blend",
+    "sub_group": "ice-blend",
+    "name": "cappuccino ice blend",
+    "price": 22000,
+    "description": "",
+    "image": "cappuccino-ice-blend.webp"
+  },
+  {
+    "id": "icic2",
+    "main_group": "ice-blend",
+    "sub_group": "ice-blend",
+    "name": "caramel latte ice blend",
+    "price": 22000,
+    "description": "",
+    "image": "caramel-latte-ice-blend.webp"
+  },
+  {
+    "id": "icic3",
+    "main_group": "ice-blend",
+    "sub_group": "ice-blend",
+    "name": "chocolate espresso ice blend",
+    "price": 22000,
+    "description": "",
+    "image": "chocolate-espresso-ice-blend.webp"
+  },
+  {
+    "id": "tenm1",
+    "main_group": "tea",
+    "sub_group": "no-milk",
+    "name": "happy tea",
+    "price": 22000,
+    "description": "",
+    "image": "happy-tea.webp"
+  },
+  {
+    "id": "tenm2",
+    "main_group": "tea",
+    "sub_group": "no-milk",
+    "name": "lucky tea",
+    "price": 22000,
+    "description": "",
+    "image": "lucky-tea.webp"
+  },
+  {
+    "id": "tenm3",
+    "main_group": "tea",
+    "sub_group": "no-milk",
+    "name": "lychee tea",
+    "price": 22000,
+    "description": "",
+    "image": "lychee-tea.webp"
+  },
+  {
+    "id": "tenm4",
+    "main_group": "tea",
+    "sub_group": "no-milk",
+    "name": "peach tea",
+    "price": 22000,
+    "description": "",
+    "image": "peach-tea.webp"
+  },
+  {
+    "id": "temi1",
+    "main_group": "tea",
+    "sub_group": "milk",
+    "name": "chocolate milk tea",
+    "price": 22000,
+    "description": "",
+    "image": "chocolate-milk-tea.webp"
+  },
+  {
+    "id": "temi2",
+    "main_group": "tea",
+    "sub_group": "milk",
+    "name": "lychee milk tea",
+    "price": 22000,
+    "description": "",
+    "image": "lychee-milk-tea.webp"
+  },
+  {
+    "id": "temi3",
+    "main_group": "tea",
+    "sub_group": "milk",
+    "name": "matcha latte",
+    "price": 22000,
+    "description": "",
+    "image": "matcha-latte.webp"
+  },
+  {
+    "id": "temi4",
+    "main_group": "tea",
+    "sub_group": "milk",
+    "name": "milk tea",
+    "price": 22000,
+    "description": "",
+    "image": "milk-tea.webp"
+  },
+  {
+    "id": "temi5",
+    "main_group": "tea",
+    "sub_group": "milk",
+    "name": "peach milk tea",
+    "price": 22000,
+    "description": "",
+    "image": "peach-milk-tea.webp"
+  },
+  {
+    "id": "tpjb1",
+    "main_group": "topping",
+    "sub_group": "jelly-boba",
+    "name": "black tapioca pearls",
+    "price": 22000,
+    "description": "",
+    "image": "black-tapioca-pearls.webp"
+  },
+  {
+    "id": "tpjb2",
+    "main_group": "topping",
+    "sub_group": "jelly-boba",
+    "name": "white tapioca pearls",
+    "price": 22000,
+    "description": "",
+    "image": "white-tapioca-pearls.webp"
+  },
+  {
+    "id": "tpjb3",
+    "main_group": "topping",
+    "sub_group": "jelly-boba",
+    "name": "golden boba",
+    "price": 22000,
+    "description": "",
+    "image": "golden-boba.webp"
+  },
+  {
+    "id": "tpjb4",
+    "main_group": "topping",
+    "sub_group": "jelly-boba",
+    "name": "jelly cubes",
+    "price": 22000,
+    "description": "",
+    "image": "jelly-cubes.webp"
+  },
+  {
+    "id": "tpjb5",
+    "main_group": "topping",
+    "sub_group": "jelly-boba",
+    "name": "taro balls",
+    "price": 22000,
+    "description": "",
+    "image": "taro-balls.webp"
+  },
+  {
+    "id": "tppu1",
+    "main_group": "topping",
+    "sub_group": "pudding",
+    "name": "chocolate pudding",
+    "price": 22000,
+    "description": "",
+    "image": "chocolate-pudding.webp"
+  },
+  {
+    "id": "tppu2",
+    "main_group": "topping",
+    "sub_group": "pudding",
+    "name": "egg pudding",
+    "price": 22000,
+    "description": "",
+    "image": "egg-pudding.webp"
+  },
+  {
+    "id": "tppu3",
+    "main_group": "topping",
+    "sub_group": "pudding",
+    "name": "matcha pudding",
+    "price": 22000,
+    "description": "",
+    "image": "matcha-pudding.webp"
+  },
+  {
+    "id": "tpot1",
+    "main_group": "topping",
+    "sub_group": "other",
+    "name": "marshmallows",
+    "price": 22000,
+    "description": "",
+    "image": "marshmallows.webp"
+  },
+  {
+    "id": "tpot2",
+    "main_group": "topping",
+    "sub_group": "other",
+    "name": "milk foarm",
+    "price": 22000,
+    "description": "",
+    "image": "milk-foarm.webp"
+  },
+  {
+    "id": "caca1",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "butter croissant",
+    "price": 22000,
+    "description": "",
+    "image": "butter-croissant.webp"
+  },
+  {
+    "id": "caca2",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "chocolate cookie",
+    "price": 22000,
+    "description": "",
+    "image": "chocolate-cookie.webp"
+  },
+  {
+    "id": "caca3",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "matcha cookie",
+    "price": 22000,
+    "description": "",
+    "image": "matcha-cookie.webp"
+  },
+  {
+    "id": "caca4",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "mochi",
+    "price": 22000,
+    "description": "",
+    "image": "mochi.webp"
+  },
+  {
+    "id": "caca5",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "egg tart",
+    "price": 22000,
+    "description": "",
+    "image": "egg-tart.webp"
+  },
+  {
+    "id": "caca6",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "passion panna cotta",
+    "price": 22000,
+    "description": "",
+    "image": "passion-panna-cotta.webp"
+  },
+  {
+    "id": "caca7",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "flan",
+    "price": 22000,
+    "description": "",
+    "image": "flan.webp"
+  },
+  {
+    "id": "caca8",
+    "main_group": "cake",
+    "sub_group": "cake",
+    "name": "tiramisu",
+    "price": 22000,
+    "description": "",
+    "image": "tiramisu.webp"
+  }
+]
