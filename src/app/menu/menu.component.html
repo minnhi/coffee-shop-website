@@ -1,17 +1,23 @@
 <section class="menu" id="product">
   <div class="container-fluid">
     <div class="row text-center">
-      <h4 class="menu-heading fw-bold">menu</h4>
+      <h4 class="heading fw-bold">menu</h4>
     </div>
     <div class="row d-md-none px-2">
-      <select name="responsive-menu" id="responsive-menu">
-        <option value="">all</option>
-        <option value="co">coffee</option>
-        <option value="te">tea</option>
-        <option value="ic">ice blend</option>
-        <option value="tp">topping</option>
-        <option value="ca">cake</option>
-      </select>
+      <div class="row d-md-none px-2">
+        <select
+          name="responsive-menu"
+          id="responsive-menu"
+          (change)="onFilterChange($event)"
+        >
+          <option value="">all</option>
+          <option value="co">coffee</option>
+          <option value="te">tea</option>
+          <option value="ic">ice blend</option>
+          <option value="tp">topping</option>
+          <option value="ca">cake</option>
+        </select>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-2 d-none d-md-block mt-5">
@@ -56,7 +62,7 @@
       </div>
       <div class="col-md-10">
         <div class="row row-cols-2 row-cols-md-4 px-2 mt-2 g-3 list-item">
-          <div class="col" *ngFor="let item of menuItems">
+          <div class="col" *ngFor="let item of filteredItems">
             <div class="card">
               <img
                 [src]="
