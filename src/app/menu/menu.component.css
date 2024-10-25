@@ -21,6 +21,7 @@
 .menu .card {
   background: var(--primary-color);
   border-radius: 1rem;
+  cursor: pointer;
 }
 
 .menu .list-item:hover> :not(:hover) {
@@ -38,7 +39,10 @@
 }
 
 .menu .item-name {
-  height: 3rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .menu .item-desc {
@@ -46,6 +50,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.menu .item-desc {
+  min-height: 2.5rem;
 }
 
 .sidebar-menu {
@@ -74,12 +82,4 @@
 
 .sidebar-menu-lv2 {
   margin-left: 2rem;
-}
-
-.modal-title {
-  font-size: 2rem;
-}
-
-.modal-img img {
-  max-height: 250px;
 }

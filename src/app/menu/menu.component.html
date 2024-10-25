@@ -24,46 +24,93 @@
         <aside class="sidebar-menu mt-5">
           <ul class="d-flex flex-column gap-3">
             <li>
-              <button class="sidebar-menu-item">all</button>
+              <button class="sidebar-menu-item" (click)="filterByGroup('all')">
+                all
+              </button>
             </li>
             <li>
-              <button class="sidebar-menu-item">coffee</button>
+              <button
+                class="sidebar-menu-item"
+                (click)="filterByGroup('coffee')"
+              >
+                coffee
+              </button>
               <ul class="sidebar-menu-lv2 mt-3 d-flex flex-column gap-3">
                 <li>
-                  <button class="sidebar-menu-item">no milk</button>
+                  <button
+                    class="sidebar-menu-item"
+                    (click)="filterByGroup('coffee', 'no-milk')"
+                  >
+                    no milk
+                  </button>
                 </li>
                 <li>
-                  <button class="sidebar-menu-item">milk</button>
+                  <button
+                    class="sidebar-menu-item"
+                    (click)="filterByGroup('coffee', 'milk')"
+                  >
+                    milk
+                  </button>
                 </li>
               </ul>
             </li>
             <li>
-              <button class="sidebar-menu-item">tea</button>
+              <button class="sidebar-menu-item" (click)="filterByGroup('tea')">
+                tea
+              </button>
               <ul class="sidebar-menu-lv2 mt-3 d-flex flex-column gap-3">
                 <li>
-                  <button class="sidebar-menu-item">no milk</button>
+                  <button
+                    class="sidebar-menu-item"
+                    (click)="filterByGroup('tea', 'no-milk')"
+                  >
+                    no milk
+                  </button>
                 </li>
                 <li>
-                  <button class="sidebar-menu-item">milk</button>
+                  <button
+                    class="sidebar-menu-item"
+                    (click)="filterByGroup('tea', 'milk')"
+                  >
+                    milk
+                  </button>
                 </li>
               </ul>
             </li>
             <li>
-              <button class="sidebar-menu-item">ice blend</button>
+              <button
+                class="sidebar-menu-item"
+                (click)="filterByGroup('ice-blend')"
+              >
+                ice blend
+              </button>
             </li>
             <li>
-              <button class="sidebar-menu-item">topping</button>
+              <button
+                class="sidebar-menu-item"
+                (click)="filterByGroup('topping')"
+              >
+                topping
+              </button>
             </li>
             <li>
-              <button class="sidebar-menu-item">cake</button>
+              <button class="sidebar-menu-item" (click)="filterByGroup('cake')">
+                cake
+              </button>
             </li>
           </ul>
         </aside>
       </div>
       <div class="col-md-10">
+        <!-- Existing items display code -->
         <div class="row row-cols-2 row-cols-md-4 px-2 mt-2 g-3 list-item">
           <div class="col" *ngFor="let item of filteredItems">
-            <div class="card">
+            <div
+              class="card"
+              (click)="openModal(item)"
+              data-bs-toggle="modal"
+              data-bs-target="#itemModal"
+            >
               <img
                 [src]="
                   '../../assets/imgs/menu/' +
@@ -90,3 +137,49 @@
     </div>
   </div>
 </section>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="itemModal"
+  tabindex="-1"
+  aria-labelledby="itemModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="itemModalLabel">
+          {{ selectedItem?.name }}
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <img
+          [src]="
+            '../../assets/imgs/menu/' +
+            selectedItem?.main_group +
+            '/' +
+            selectedItem?.sub_group +
+            '/' +
+            selectedItem?.image
+          "
+          class="img-fluid"
+          alt="{{ selectedItem?.name }}"
+        />
+        <p class="mt-3">{{ selectedItem?.description }}</p>
+        <p class="fw-bold">{{ selectedItem?.price | number : "1.0-0" }} ₫</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

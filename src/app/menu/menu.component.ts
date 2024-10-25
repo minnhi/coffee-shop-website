@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
   menuItems: any[] = []; // Dữ liệu menu ban đầu
   filteredItems: any[] = []; // Dữ liệu sau khi lọc
   selectedValue: string = ''; // Giá trị được chọn từ dropdown
+  selectedItem: any = null; // Item được chọn để hiển thị trong modal
 
   constructor(private menuService: MenuService) {}
 
@@ -21,16 +22,34 @@ export class MenuComponent implements OnInit {
   }
 
   onFilterChange(event: Event): void {
-    const target = event.target as HTMLSelectElement; // Ép kiểu về HTMLSelectElement
-    const value = target.value; // Lấy giá trị của phần tử select
+    const target = event.target as HTMLSelectElement;
+    const value = target.value;
     this.selectedValue = value;
 
     if (value === '') {
-      this.filteredItems = this.menuItems; // Hiển thị tất cả khi chọn "all"
+      this.filteredItems = this.menuItems;
     } else {
       this.filteredItems = this.menuItems.filter((item) =>
         item.id.startsWith(value)
       );
     }
+  }
+
+  filterByGroup(mainGroup: string, subGroup?: string): void {
+    if (mainGroup === 'all') {
+      this.filteredItems = this.menuItems;
+    } else if (subGroup) {
+      this.filteredItems = this.menuItems.filter(
+        (item) => item.main_group === mainGroup && item.sub_group === subGroup
+      );
+    } else {
+      this.filteredItems = this.menuItems.filter(
+        (item) => item.main_group === mainGroup
+      );
+    }
+  }
+
+  openModal(item: any): void {
+    this.selectedItem = item;
   }
 }
