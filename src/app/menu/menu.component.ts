@@ -11,45 +11,44 @@ export class MenuComponent implements OnInit {
   filteredItems: any[] = []; // Dữ liệu sau khi lọc
   selectedValue: string = ''; // Giá trị được chọn từ dropdown
   selectedItem: any = null; // Item được chọn để hiển thị trong modal
+  cartItems: any[] = []; // Các sản phẩm trong giỏ hàng
+  cartCount: number = 0; // Số lượng sản phẩm trong giỏ hàng
+  isCartModalOpen: boolean = false; // Trạng thái hiển thị giỏ hàng
 
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
+    // Lấy dữ liệu từ file JSON thông qua MenuService
     this.menuService.getMenu().subscribe((data) => {
       this.menuItems = data;
-      this.filteredItems = data; // Hiển thị tất cả dữ liệu ban đầu
+      this.applyFilter(); // Thiết lập filteredItems ban đầu
     });
   }
 
-  onFilterChange(event: Event): void {
-    const target = event.target as HTMLSelectElement;
-    const value = target.value;
-    this.selectedValue = value;
+  applyFilter(mainGroup: string = 'all', subGroup?: string): void {
+    const filterValue = this.selectedValue || mainGroup;
 
-    if (value === '') {
-      this.filteredItems = this.menuItems;
-    } else {
-      this.filteredItems = this.menuItems.filter((item) =>
-        item.id.startsWith(value)
-      );
-    }
-  }
-
-  filterByGroup(mainGroup: string, subGroup?: string): void {
-    if (mainGroup === 'all') {
-      this.filteredItems = this.menuItems;
-    } else if (subGroup) {
-      this.filteredItems = this.menuItems.filter(
-        (item) => item.main_group === mainGroup && item.sub_group === subGroup
-      );
-    } else {
-      this.filteredItems = this.menuItems.filter(
-        (item) => item.main_group === mainGroup
-      );
-    }
+    // Lọc dữ liệu dựa trên mainGroup và subGroup nếu có
+    this.filteredItems = this.menuItems.filter((item) => {
+      const matchesMainGroup =
+        filterValue === 'all' || item.main_group === filterValue;
+      const matchesSubGroup = subGroup ? item.sub_group === subGroup : true;
+      return matchesMainGroup && matchesSubGroup;
+    });
   }
 
   openModal(item: any): void {
     this.selectedItem = item;
+  }
+
+  addToCart(): void {
+    if (this.selectedItem) {
+      this.cartItems.push({ ...this.selectedItem });
+      this.cartCount = this.cartItems.length;
+    }
+  }
+
+  toggleCartModal(): void {
+    this.isCartModalOpen = !this.isCartModalOpen;
   }
 }
