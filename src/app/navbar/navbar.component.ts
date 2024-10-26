@@ -101,7 +101,8 @@ export class NavbarComponent implements OnInit {
   }
 
   openRegisterModal() {
-    this.isRegisterModalOpen = true; // Open registration modal
+    this.isLoginModalOpen = false; // Đóng login modal nếu đang mở
+    this.isRegisterModalOpen = true; // Mở modal đăng ký
   }
 
   closeRegisterModal() {
@@ -140,6 +141,16 @@ export class NavbarComponent implements OnInit {
 
   // Registration method
   register() {
+    // Check if any registration field is empty
+    if (
+      !this.registerFullname ||
+      !this.registerPhone ||
+      !this.registerPassword
+    ) {
+      this.registerErrorMessage = 'All fields are required!'; // Message if any field is empty
+      return;
+    }
+
     const userExists = this.users.some(
       (u) => u.phonenumber === this.registerPhone // Check phone number
     );
@@ -162,28 +173,20 @@ export class NavbarComponent implements OnInit {
       // Add the new user to the users array
       this.users.push(newUser);
 
-      // Save user information to sessionStorage
-      sessionStorage.setItem('username', newUser.username);
-      sessionStorage.setItem('userDetails', JSON.stringify(newUser)); // Save detailed user information
-
-      this.successMessage = 'Registration successful!'; // Success message
+      this.successMessage = 'Registration successful! Please log in.'; // Success message
       this.registerErrorMessage = ''; // Reset error message
       this.closeRegisterModal(); // Close modal after successful registration
 
       // Open login modal after successful registration
       this.openLoginModal();
-
-      // Mark user as logged in
-      this.isLoggedIn = true;
-      this.loggedInUser = newUser; // Update logged-in user information
     }
   }
 
   // Logout method
   logout() {
-    // Xóa thông tin đăng nhập
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('userDetails'); // Xóa thông tin chi tiết người dùng
+    // Xóa tất cả thông tin trong sessionStorage
+    sessionStorage.clear(); // Xóa toàn bộ sessionStorage
+
     this.isLoggedIn = false; // Cập nhật trạng thái đăng nhập
     this.loggedInUser = null; // Xóa thông tin người dùng đã đăng nhập
   }

@@ -105,3 +105,8 @@
 .subcrisbe-summit:active {
   transform: scale(0.95);
 }
+
+.custom-input,
+.custom-button {
+  height: 2.5rem;
+}

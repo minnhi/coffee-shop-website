@@ -281,7 +281,7 @@
         <!-- Updated Button Color -->
         <button
           class="btn w-100 py-2"
-          style="background-color: #ffe0b2; color: #000"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
           (click)="addToCart()"
           data-bs-dismiss="modal"
         >
@@ -421,8 +421,9 @@
   aria-hidden="true"
   [ngClass]="{ show: isCheckoutModalOpen }"
   [style.display]="isCheckoutModalOpen ? 'block' : 'none'"
+  style="font-size: 2rem"
 >
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
       <!-- Updated Modal Header Color -->
       <div class="modal-header" style="background-color: #fff9c4; color: #000">
@@ -436,16 +437,19 @@
 
       <div class="modal-body">
         <!-- Empty Cart Message -->
-        <div *ngIf="isCartEmpty">
+        <div *ngIf="isCartEmpty" class="text-center">
           <p>Your cart is empty. Please add items to proceed with checkout.</p>
         </div>
-
         <!-- Checkout Form -->
         <div *ngIf="!isCartEmpty">
           <!-- Choose Service Type -->
-          <div class="mb-3">
+          <div class="mb-4">
             <label class="form-label">Choose Service Type:</label>
-            <select class="form-select" [(ngModel)]="serviceType">
+            <select
+              class="form-select"
+              [(ngModel)]="serviceType"
+              style="font-size: 2rem"
+            >
               <option value="dineIn">Dine In</option>
               <option value="delivery">Delivery</option>
             </select>
@@ -453,62 +457,94 @@
 
           <!-- Dine In Form -->
           <div *ngIf="serviceType === 'dineIn'">
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Name:</label>
               <input
                 type="text"
                 class="form-control"
                 [(ngModel)]="customerName"
+                placeholder="Enter your name"
+                style="font-size: 2rem"
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Phone Number:</label>
               <input
                 type="tel"
                 class="form-control"
                 [(ngModel)]="customerPhone"
+                placeholder="Enter your phone number"
+                style="font-size: 2rem"
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Payment Method:</label>
-              <select class="form-select" [(ngModel)]="paymentMethod">
+              <select
+                class="form-select"
+                [(ngModel)]="paymentMethod"
+                style="font-size: 2rem"
+              >
                 <option value="cash">Cash</option>
                 <option value="card">Card</option>
               </select>
+            </div>
+
+            <!-- Bank Transfer Information for Card Payment -->
+            <div *ngIf="paymentMethod === 'card'" class="mb-4">
+              <p><strong>Bank Name:</strong> Coffee Bank</p>
+              <p><strong>Account Number:</strong> 123456789</p>
+              <p><strong>Account Holder:</strong> CozyNook Cafe</p>
             </div>
           </div>
 
           <!-- Delivery Form -->
           <div *ngIf="serviceType === 'delivery'">
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Name:</label>
               <input
                 type="text"
                 class="form-control"
                 [(ngModel)]="customerName"
+                placeholder="Enter your name"
+                style="font-size: 2rem"
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Phone Number:</label>
               <input
                 type="tel"
                 class="form-control"
                 [(ngModel)]="customerPhone"
+                placeholder="Enter your phone number"
+                style="font-size: 2rem"
               />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Address:</label>
               <textarea
                 class="form-control"
                 [(ngModel)]="deliveryAddress"
+                placeholder="Enter your delivery address"
+                style="font-size: 2rem"
               ></textarea>
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
               <label class="form-label">Payment Method:</label>
-              <select class="form-select" [(ngModel)]="paymentMethod">
+              <select
+                class="form-select"
+                [(ngModel)]="paymentMethod"
+                style="font-size: 2rem"
+              >
                 <option value="cash">Cash on Delivery</option>
                 <option value="card">Card</option>
               </select>
+            </div>
+
+            <!-- Bank Transfer Information for Card Payment -->
+            <div *ngIf="paymentMethod === 'card'" class="mb-4">
+              <p><strong>Bank Name:</strong> Coffee Bank</p>
+              <p><strong>Account Number:</strong> 123456789</p>
+              <p><strong>Account Holder:</strong> CozyNook Cafe</p>
             </div>
           </div>
         </div>
@@ -519,7 +555,7 @@
         <button
           type="button"
           class="btn"
-          style="background-color: #ffe0b2; color: #000"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
           (click)="confirmOrder()"
         >
           Confirm Order
@@ -538,9 +574,11 @@
   aria-hidden="true"
   [ngClass]="{ show: isSuccessModalOpen }"
   [style.display]="isSuccessModalOpen ? 'block' : 'none'"
+  style="font-size: 2rem"
 >
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal">
     <div class="modal-content">
+      <!-- Modal Header with Custom Background -->
       <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="successModalLabel">Order Successful</h5>
         <button
@@ -549,18 +587,21 @@
           (click)="closeSuccessModal()"
         ></button>
       </div>
+
+      <!-- Modal Body -->
       <div class="modal-body text-center">
         <p>Thank you for your order!</p>
         <p>
           Your queue number is: <strong>{{ queueNumber }}</strong>
         </p>
       </div>
-      <div class="modal-footer">
-        <!-- Updated Button Color -->
+
+      <!-- Modal Footer with Button Style -->
+      <div class="modal-footer justify-content-center">
         <button
           type="button"
           class="btn"
-          style="background-color: #ffe0b2; color: #000"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
           (click)="closeSuccessModal()"
         >
           OK

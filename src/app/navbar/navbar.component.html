@@ -60,9 +60,11 @@
   aria-hidden="true"
   [ngClass]="{ show: isLoginModalOpen }"
   [style.display]="isLoginModalOpen ? 'block' : 'none'"
+  style="font-size: 2rem"
 >
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal">
     <div class="modal-content">
+      <!-- Modal Header with Background Color -->
       <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="loginModalLabel">Login</h5>
         <button
@@ -71,8 +73,11 @@
           (click)="closeLoginModal()"
         ></button>
       </div>
+
+      <!-- Modal Body -->
       <div class="modal-body">
         <form autocomplete="off">
+          <!-- Username Field -->
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input
@@ -83,8 +88,11 @@
               name="username"
               placeholder="Please enter your phone number."
               required
+              style="font-size: 2rem"
             />
           </div>
+
+          <!-- Password Field -->
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input
@@ -94,34 +102,41 @@
               [(ngModel)]="password"
               name="password"
               required
+              style="font-size: 2rem"
             />
           </div>
 
-          <!-- Error or success message -->
+          <!-- Error or Success Message -->
           <div *ngIf="errorMessage || successMessage" class="text-danger">
             {{ errorMessage || successMessage }}
           </div>
         </form>
       </div>
-      <div class="modal-footer">
+
+      <!-- Modal Footer -->
+      <div class="modal-footer d-flex justify-content-between">
+        <!-- Submit Button with Background Color -->
         <button
           type="button"
           class="btn"
-          style="background-color: #ffe0b2; color: #000"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
           (click)="login()"
         >
-          Submit
+          Login
         </button>
 
-        <!-- Register Button -->
-        <button
-          type="button"
-          class="btn btn-link"
-          style="color: #007bff"
-          (click)="openRegisterModal()"
-        >
-          Don't have an account? Register
-        </button>
+        <!-- Register Button as Link -->
+        <div class="d-flex align-items-center">
+          Don't have an account?
+          <button
+            type="button"
+            class="btn btn-link"
+            style="color: #007bff; font-size: 2rem"
+            (click)="openRegisterModal()"
+          >
+            Register
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -158,6 +173,10 @@
               [(ngModel)]="registerFullname"
               name="registerFullname"
               required
+              [ngClass]="{
+                'is-invalid': registerErrorMessage && !registerFullname
+              }"
+              style="font-size: 2rem"
             />
           </div>
           <div class="mb-3">
@@ -169,6 +188,10 @@
               [(ngModel)]="registerPhone"
               name="registerPhone"
               required
+              [ngClass]="{
+                'is-invalid': registerErrorMessage && !registerPhone
+              }"
+              style="font-size: 2rem"
             />
           </div>
           <div class="mb-3">
@@ -180,6 +203,10 @@
               [(ngModel)]="registerPassword"
               name="registerPassword"
               required
+              [ngClass]="{
+                'is-invalid': registerErrorMessage && !registerPassword
+              }"
+              style="font-size: 2rem"
             />
           </div>
 
@@ -196,7 +223,7 @@
         <button
           type="button"
           class="btn"
-          style="background-color: #ffe0b2; color: #000"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
           (click)="register()"
         >
           Register
@@ -219,14 +246,17 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #fff9c4; color: #000">
-        <h5 class="modal-title" id="memberModalLabel">Member Information</h5>
+        <h5 class="modal-title" id="memberModalLabel" style="font-size: 2rem">
+          Member Information
+        </h5>
         <button
           type="button"
           class="btn-close"
           (click)="closeMemberModal()"
+          aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size: 2rem">
         <div *ngIf="!loggedInUser">You are not logged in.</div>
         <div *ngIf="loggedInUser">
           <ul class="list-group">
@@ -240,6 +270,16 @@
             </li>
           </ul>
         </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeMemberModal()"
+          style="font-size: 2rem"
+        >
+          Close
+        </button>
       </div>
     </div>
   </div>

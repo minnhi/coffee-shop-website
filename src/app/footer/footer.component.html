@@ -64,30 +64,41 @@
         </div>
       </div>
       <div class="col-md-4 col-6 footer__column--subscribe">
-        <h5 class="footer__subscribe-form text-capitalize fw-bold">
-          subscribe for news
+        <h5 class="footer__subscribe-form text-uppercase fw-bold mb-4">
+          Subscribe for News
         </h5>
         <form
-          action=""
-          method="post"
-          class="subcrisbe-form text-capitalize fw-bold mt-3 pe-3"
+          [formGroup]="subscribeForm"
+          (ngSubmit)="onSubmit()"
+          class="subscribe-form text-capitalize mt-3 pe-3"
         >
-          <div class="row">
-            <div class="col-8">
-              <div class="mb-3">
-                <input
-                  type="email"
-                  class="form-control input-email"
-                  placeholder="Your Email"
-                  required
-                />
-              </div>
+          <div style="display: flex; align-items: center">
+            <div style="flex-grow: 1; margin-right: 10px">
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                placeholder="Your Email"
+                required
+                style="height: 3rem; font-size: 2rem"
+              />
             </div>
-            <div class="col-4">
-              <button type="submit" class="subcrisbe-summit fw-bold">
-                <span>Subcrisbe</span>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-primary fw-bold"
+                [disabled]="!subscribeForm.valid"
+                style="height: 3rem; color: 2rem"
+              >
+                Subscribe
               </button>
             </div>
+          </div>
+          <div
+            *ngIf="submitted && subscribeForm.invalid"
+            class="text-danger mt-2 small"
+          >
+            Please enter a valid email.
           </div>
         </form>
       </div>
