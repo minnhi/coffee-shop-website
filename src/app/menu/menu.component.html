@@ -12,11 +12,11 @@
         (change)="applyFilter()"
       >
         <option value="">all</option>
-        <option value="co">coffee</option>
-        <option value="te">tea</option>
-        <option value="ic">ice blend</option>
-        <option value="tp">topping</option>
-        <option value="ca">cake</option>
+        <option value="coffee">coffee</option>
+        <option value="tea">tea</option>
+        <option value="ice-blend">ice blend</option>
+        <option value="topping">topping</option>
+        <option value="cake">cake</option>
       </select>
     </div>
 
@@ -157,13 +157,14 @@
 >
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
+      <!-- Updated Modal Header Color -->
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="itemModalLabel">
           {{ selectedItem?.name }}
         </h5>
         <button
           type="button"
-          class="btn-close btn-close-white"
+          class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close"
         ></button>
@@ -193,8 +194,11 @@
             </p>
 
             <!-- Quantity Selection -->
-            <div class="quantity-selector mt-3">
-              <label for="itemQuantity" class="form-label fw-bold"
+            <div class="quantity-selector mt-3 d-flex align-items-center">
+              <label
+                for="itemQuantity"
+                class="form-label fw-bold me-2"
+                style="font-size: 2rem"
                 >Quantity:</label
               >
               <div class="input-group input-group-sm">
@@ -202,6 +206,7 @@
                   type="button"
                   class="btn btn-outline-secondary"
                   (click)="decreaseModalQuantity()"
+                  style="font-size: 2rem"
                 >
                   −
                 </button>
@@ -211,59 +216,72 @@
                   class="form-control text-center"
                   [(ngModel)]="modalQuantity"
                   (input)="onQuantityInputChange()"
-                  style="width: 50px"
+                  style="font-size: 2rem"
                 />
                 <button
                   type="button"
                   class="btn btn-outline-secondary"
                   (click)="increaseModalQuantity()"
+                  style="font-size: 2rem"
                 >
                   +
                 </button>
               </div>
             </div>
 
-            <!-- Sugar Level Selection -->
-            <div class="sugar-level mt-3">
-              <label for="sugarLevel" class="form-label fw-bold"
-                >Sugar Level:</label
-              >
-              <select
-                id="sugarLevel"
-                class="form-select"
-                [(ngModel)]="sugarLevel"
-                (change)="setSugarLevel(sugarLevel)"
-              >
-                <option value="no-sugar">No Sugar</option>
-                <option value="less">Less</option>
-                <option value="normal">Normal</option>
-                <option value="extra">Extra</option>
-              </select>
-            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <!-- Sugar Level Selection -->
+              <div class="sugar-level me-2 flex-grow-1">
+                <label
+                  for="sugarLevel"
+                  class="form-label fw-bold"
+                  style="font-size: 2rem"
+                  >Sugar Level:</label
+                >
+                <select
+                  id="sugarLevel"
+                  class="form-select"
+                  [(ngModel)]="sugarLevel"
+                  (change)="setSugarLevel(sugarLevel)"
+                  style="font-size: 2rem"
+                >
+                  <option value="no-sugar">No Sugar</option>
+                  <option value="less">Less</option>
+                  <option value="normal">Normal</option>
+                  <option value="extra">Extra</option>
+                </select>
+              </div>
 
-            <!-- Ice Level Selection -->
-            <div class="ice-level mt-3">
-              <label for="iceLevel" class="form-label fw-bold"
-                >Ice Level:</label
-              >
-              <select
-                id="iceLevel"
-                class="form-select"
-                [(ngModel)]="iceLevel"
-                (change)="setIceLevel(iceLevel)"
-              >
-                <option value="no-ice">No Ice</option>
-                <option value="less">Less</option>
-                <option value="normal">Normal</option>
-                <option value="extra">Extra</option>
-              </select>
+              <!-- Ice Level Selection -->
+              <div class="ice-level ms-2 flex-grow-1">
+                <label
+                  for="iceLevel"
+                  class="form-label fw-bold"
+                  style="font-size: 2rem"
+                  >Ice Level:</label
+                >
+                <select
+                  id="iceLevel"
+                  class="form-select"
+                  [(ngModel)]="iceLevel"
+                  (change)="setIceLevel(iceLevel)"
+                  style="font-size: 2rem"
+                >
+                  <option value="no-ice">No Ice</option>
+                  <option value="less">Less</option>
+                  <option value="normal">Normal</option>
+                  <option value="extra">Extra</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
+        <!-- Updated Button Color -->
         <button
-          class="btn btn-primary w-100 py-2"
+          class="btn w-100 py-2"
+          style="background-color: #ffe0b2; color: #000"
           (click)="addToCart()"
           data-bs-dismiss="modal"
         >
@@ -286,17 +304,17 @@
 >
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="cartModalLabel">Your Shopping Cart</h5>
         <button
           type="button"
-          class="btn-close btn-close-white"
+          class="btn-close"
           (click)="toggleCartModal()"
         ></button>
       </div>
       <div class="modal-body">
         <div *ngIf="cartItems.length === 0" class="text-center py-3">
-          <p class="text-muted">Your cart is empty!</p>
+          <p class="text-muted" style="font-size: 2rem">Your cart is empty!</p>
         </div>
         <div
           *ngFor="let item of cartItems"
@@ -318,11 +336,11 @@
           <div class="flex-grow-1">
             <p class="fw-bold mb-1 text-capitalize">{{ item.name }}</p>
             <p class="text-muted mb-1">{{ item.price | number : "1.0-0" }} ₫</p>
-            <p class="mb-1">
+            <p class="mb-1" style="font-size: 2rem">
               Sugar Level:
               <span class="text-capitalize">{{ item.sugarLevel }}</span>
             </p>
-            <p>
+            <p style="font-size: 2rem">
               Ice Level:
               <span class="text-capitalize">{{ item.iceLevel }}</span>
             </p>
@@ -334,6 +352,7 @@
                 type="button"
                 class="btn btn-outline-secondary"
                 (click)="decreaseQuantity(item)"
+                style="font-size: 2rem"
               >
                 −
               </button>
@@ -342,12 +361,13 @@
                 class="form-control text-center"
                 [(ngModel)]="item.quantity"
                 (input)="updateCartCount(); calculateTotalPrice()"
-                style="width: 50px"
+                style="width: 50px; font-size: 2rem"
               />
               <button
                 type="button"
                 class="btn btn-outline-secondary"
                 (click)="increaseQuantity(item)"
+                style="font-size: 2rem"
               >
                 +
               </button>
@@ -356,8 +376,11 @@
         </div>
 
         <!-- Notes Section -->
-        <div class="mt-3">
-          <label for="orderNotes" class="form-label fw-bold"
+        <div *ngIf="showNotes" class="mt-3">
+          <label
+            for="orderNotes"
+            class="form-label fw-bold"
+            style="font-size: 2rem"
             >Order Notes:</label
           >
           <textarea
@@ -365,17 +388,23 @@
             class="form-control"
             [(ngModel)]="orderNotes"
             rows="3"
+            style="font-size: 1.6rem"
             placeholder="Add any special instructions or notes for your order"
           ></textarea>
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-between">
         <div>
-          <h5 class="mb-0">
+          <h5 class="mb-0" style="font-size: 2rem">
             Total Price: {{ totalPrice | number : "1.0-0" }} ₫
           </h5>
         </div>
-        <button type="button" class="btn btn-primary" (click)="checkout()">
+        <button
+          type="button"
+          class="btn"
+          style="background-color: #ffe0b2; color: #000; font-size: 2rem"
+          (click)="checkout()"
+        >
           Checkout
         </button>
       </div>
@@ -395,7 +424,8 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <!-- Updated Modal Header Color -->
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="checkoutModalLabel">Order Details</h5>
         <button
           type="button"
@@ -403,79 +433,95 @@
           (click)="toggleCheckoutModal()"
         ></button>
       </div>
+
       <div class="modal-body">
-        <!-- Choose Service Type -->
-        <div class="mb-3">
-          <label class="form-label">Choose Service Type:</label>
-          <select class="form-select" [(ngModel)]="serviceType">
-            <option value="dineIn">Dine In</option>
-            <option value="delivery">Delivery</option>
-          </select>
+        <!-- Empty Cart Message -->
+        <div *ngIf="isCartEmpty">
+          <p>Your cart is empty. Please add items to proceed with checkout.</p>
         </div>
 
-        <!-- Dine In Form -->
-        <div *ngIf="serviceType === 'dineIn'">
+        <!-- Checkout Form -->
+        <div *ngIf="!isCartEmpty">
+          <!-- Choose Service Type -->
           <div class="mb-3">
-            <label class="form-label">Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="customerName"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Phone Number:</label>
-            <input
-              type="tel"
-              class="form-control"
-              [(ngModel)]="customerPhone"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Payment Method:</label>
-            <select class="form-select" [(ngModel)]="paymentMethod">
-              <option value="cash">Cash</option>
-              <option value="card">Card</option>
+            <label class="form-label">Choose Service Type:</label>
+            <select class="form-select" [(ngModel)]="serviceType">
+              <option value="dineIn">Dine In</option>
+              <option value="delivery">Delivery</option>
             </select>
           </div>
-        </div>
 
-        <!-- Delivery Form -->
-        <div *ngIf="serviceType === 'delivery'">
-          <div class="mb-3">
-            <label class="form-label">Name:</label>
-            <input
-              type="text"
-              class="form-control"
-              [(ngModel)]="customerName"
-            />
+          <!-- Dine In Form -->
+          <div *ngIf="serviceType === 'dineIn'">
+            <div class="mb-3">
+              <label class="form-label">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="customerName"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone Number:</label>
+              <input
+                type="tel"
+                class="form-control"
+                [(ngModel)]="customerPhone"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Payment Method:</label>
+              <select class="form-select" [(ngModel)]="paymentMethod">
+                <option value="cash">Cash</option>
+                <option value="card">Card</option>
+              </select>
+            </div>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Phone Number:</label>
-            <input
-              type="tel"
-              class="form-control"
-              [(ngModel)]="customerPhone"
-            />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Address:</label>
-            <textarea
-              class="form-control"
-              [(ngModel)]="deliveryAddress"
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Payment Method:</label>
-            <select class="form-select" [(ngModel)]="paymentMethod">
-              <option value="cash">Cash on Delivery</option>
-              <option value="card">Card</option>
-            </select>
+
+          <!-- Delivery Form -->
+          <div *ngIf="serviceType === 'delivery'">
+            <div class="mb-3">
+              <label class="form-label">Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="customerName"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Phone Number:</label>
+              <input
+                type="tel"
+                class="form-control"
+                [(ngModel)]="customerPhone"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Address:</label>
+              <textarea
+                class="form-control"
+                [(ngModel)]="deliveryAddress"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Payment Method:</label>
+              <select class="form-select" [(ngModel)]="paymentMethod">
+                <option value="cash">Cash on Delivery</option>
+                <option value="card">Card</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="confirmOrder()">
+
+      <div class="modal-footer" *ngIf="!isCartEmpty">
+        <!-- Updated Button Color -->
+        <button
+          type="button"
+          class="btn"
+          style="background-color: #ffe0b2; color: #000"
+          (click)="confirmOrder()"
+        >
           Confirm Order
         </button>
       </div>
@@ -495,8 +541,13 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
         <h5 class="modal-title" id="successModalLabel">Order Successful</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeSuccessModal()"
+        ></button>
       </div>
       <div class="modal-body text-center">
         <p>Thank you for your order!</p>
@@ -505,9 +556,11 @@
         </p>
       </div>
       <div class="modal-footer">
+        <!-- Updated Button Color -->
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn"
+          style="background-color: #ffe0b2; color: #000"
           (click)="closeSuccessModal()"
         >
           OK

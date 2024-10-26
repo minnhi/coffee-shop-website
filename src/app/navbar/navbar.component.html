@@ -37,11 +37,210 @@
         </li>
       </ul>
 
-      <button class="login-btn ms-auto">
+      <button
+        class="login-btn ms-auto"
+        (click)="isLoggedIn ? logout() : openLoginModal()"
+      >
         <div class="login-btn-text">
-          <span class="fw-bolder text-capitalize">login</span>
+          <span class="fw-bolder text-capitalize">
+            {{ isLoggedIn ? "Logout" : "Login" }}
+          </span>
         </div>
       </button>
     </div>
   </div>
 </nav>
+
+<!-- Login Modal -->
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isLoginModalOpen }"
+  [style.display]="isLoginModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeLoginModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form autocomplete="off">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              [(ngModel)]="username"
+              name="username"
+              placeholder="Please enter your phone number."
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+          </div>
+
+          <!-- Error or success message -->
+          <div *ngIf="errorMessage || successMessage" class="text-danger">
+            {{ errorMessage || successMessage }}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background-color: #ffe0b2; color: #000"
+          (click)="login()"
+        >
+          Submit
+        </button>
+
+        <!-- Register Button -->
+        <button
+          type="button"
+          class="btn btn-link"
+          style="color: #007bff"
+          (click)="openRegisterModal()"
+        >
+          Don't have an account? Register
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div
+  class="modal fade"
+  id="registerModal"
+  tabindex="-1"
+  aria-labelledby="registerModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isRegisterModalOpen }"
+  [style.display]="isRegisterModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
+        <h5 class="modal-title" id="registerModalLabel">Register</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeRegisterModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="registerFullname" class="form-label">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="registerFullname"
+              [(ngModel)]="registerFullname"
+              name="registerFullname"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="registerPhone" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="registerPhone"
+              [(ngModel)]="registerPhone"
+              name="registerPhone"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="registerPassword" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="registerPassword"
+              [(ngModel)]="registerPassword"
+              name="registerPassword"
+              required
+            />
+          </div>
+
+          <!-- Error or success message -->
+          <div
+            *ngIf="registerErrorMessage || successMessage"
+            class="text-danger"
+          >
+            {{ registerErrorMessage || successMessage }}
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn"
+          style="background-color: #ffe0b2; color: #000"
+          (click)="register()"
+        >
+          Register
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Member Modal -->
+<div
+  class="modal fade"
+  id="memberModal"
+  tabindex="-1"
+  aria-labelledby="memberModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isMemberModalOpen }"
+  [style.display]="isMemberModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #fff9c4; color: #000">
+        <h5 class="modal-title" id="memberModalLabel">Member Information</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="closeMemberModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="!loggedInUser">You are not logged in.</div>
+        <div *ngIf="loggedInUser">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <strong>Full Name:</strong> {{ loggedInUser.fullname }}<br />
+              <strong>Accumulated Points:</strong>
+              {{ loggedInUser.accumulatedPoints }}<br />
+              <strong>Phone Number:</strong> {{ loggedInUser.username }}<br />
+              <strong>Membership Level:</strong>
+              {{ loggedInUser.membershipLevel }}<br />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

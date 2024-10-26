@@ -1,0 +1,42 @@
+[
+  {
+    "username": "0123456789",
+    "password": "password123",
+    "membershipCard": "0123456789",
+    "fullname": "Nguyễn Văn A",
+    "phonenumber": "0123456789",
+    "accumulatedPoints": 50,
+    "membershipLevel": "Basic",
+    "pointsAccumulationProgress": 50
+  },
+  {
+    "username": "0987654321",
+    "password": "securepass456",
+    "membershipCard": "0987654321",
+    "fullname": "Trần Thị B",
+    "phonenumber": "0987654321",
+    "accumulatedPoints": 150,
+    "membershipLevel": "VIP",
+    "pointsAccumulationProgress": 75
+  },
+  {
+    "username": "0912345678",
+    "password": "mypassword789",
+    "membershipCard": "0912345678",
+    "fullname": "Lê Văn C",
+    "phonenumber": "0912345678",
+    "accumulatedPoints": 250,
+    "membershipLevel": "Diamond",
+    "pointsAccumulationProgress": 100
+  },
+  {
+    "username": "0912345679",
+    "password": "adminpass",
+    "membershipCard": "0912345679",
+    "fullname": "Admin User",
+    "phonenumber": "0912345679",
+    "accumulatedPoints": 300,
+    "membershipLevel": "Diamond",
+    "pointsAccumulationProgress": 100
+  }
+]

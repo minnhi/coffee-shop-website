@@ -7,24 +7,28 @@ import { MenuService } from './menu.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
+  // Member variables
   menuItems: any[] = [];
   filteredItems: any[] = [];
   selectedValue: string = '';
   selectedItem: any = null;
   cartItems: any[] = [];
   cartCount: number = 0;
+
   isCartModalOpen: boolean = false;
   isCheckoutModalOpen: boolean = false;
+  isCartEmpty: boolean = false;
   isSuccessModalOpen: boolean = false;
 
-  // Properties for sugar, ice levels, and quantity
+  // Custom order information
   sugarLevel: string = 'normal';
   iceLevel: string = 'normal';
   modalQuantity: number = 1;
   orderNotes: string = '';
   totalPrice: number = 0;
+  showNotes: boolean = false;
 
-  // New properties for checkout details
+  // Customer payment details
   serviceType: string = 'dineIn';
   customerName: string = '';
   customerPhone: string = '';
@@ -39,8 +43,30 @@ export class MenuComponent implements OnInit {
       this.menuItems = data;
       this.applyFilter();
     });
+
+    // this.loadCartFromSessionStorage();
+    const userDetails = sessionStorage.getItem('userDetails');
+    if (userDetails) {
+      const user = JSON.parse(userDetails);
+      this.customerName = user.fullname || ''; // Gán fullname nếu có
+      this.customerPhone = user.phonenumber || ''; // Gán số điện thoại nếu có
+      // Có thể gán deliveryAddress nếu cần, tuy nhiên, thông tin này có thể không có trong userDetails
+    }
   }
 
+  loadCartFromSessionStorage(): void {
+    const username = sessionStorage.getItem('username');
+    if (username) {
+      const storedCart = sessionStorage.getItem(`cart_${username}`);
+      if (storedCart) {
+        this.cartItems = JSON.parse(storedCart);
+        this.updateCartCount();
+        this.calculateTotalPrice();
+      }
+    }
+  }
+
+  // Logic for filtering menu items
   applyFilter(mainGroup: string = 'all', subGroup?: string): void {
     const filterValue = this.selectedValue || mainGroup;
     this.filteredItems = this.menuItems.filter((item) => {
@@ -51,6 +77,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  // Modal management
   openModal(item: any): void {
     this.selectedItem = item;
     this.sugarLevel = 'normal';
@@ -76,6 +103,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
+  // Cart management
   addToCart(): void {
     if (this.selectedItem) {
       const existingItem = this.cartItems.find(
@@ -99,6 +127,7 @@ export class MenuComponent implements OnInit {
 
       this.updateCartCount();
       this.calculateTotalPrice();
+      this.saveCartToSessionStorage(); // Save cart to sessionStorage
       this.modalQuantity = 1;
     }
   }
@@ -107,6 +136,7 @@ export class MenuComponent implements OnInit {
     item.quantity += 1;
     this.updateCartCount();
     this.calculateTotalPrice();
+    this.saveCartToSessionStorage(); // Update sessionStorage
   }
 
   decreaseQuantity(item: any): void {
@@ -117,39 +147,56 @@ export class MenuComponent implements OnInit {
     }
     this.updateCartCount();
     this.calculateTotalPrice();
+    this.saveCartToSessionStorage(); // Update sessionStorage
   }
 
   updateCartCount(): void {
     this.cartCount = this.cartItems.reduce(
       (total, item) => total + item.quantity,
       0
-    );
+    ); // Cập nhật số lượng giỏ hàng
   }
 
   calculateTotalPrice(): void {
     this.totalPrice = this.cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
-    );
+    ); // Tính toán tổng giá trị giỏ hàng
+  }
+
+  saveCartToSessionStorage(): void {
+    const username = sessionStorage.getItem('username');
+    if (username) {
+      sessionStorage.setItem(
+        `cart_${username}`,
+        JSON.stringify(this.cartItems)
+      );
+    }
   }
 
   toggleCartModal(): void {
-    this.isCartModalOpen = !this.isCartModalOpen;
+    this.isCartModalOpen = !this.isCartModalOpen; // Đảo ngược trạng thái modal giỏ hàng
   }
 
   checkout(): void {
-    if (this.cartItems.length === 0) {
-      alert(
-        'Your cart is empty. Please add items to the cart before proceeding to checkout.'
-      );
-      return; // Prevent opening the checkout modal if cart is empty
+    const username = sessionStorage.getItem('username'); // Lấy thông tin người dùng từ sessionStorage
+    if (!username) {
+      alert('You need to log in to proceed with checkout.'); // Thông báo nếu người dùng chưa đăng nhập
+      return; // Ngừng thực hiện hàm nếu chưa đăng nhập
     }
 
-    this.toggleCartModal();
-    this.isCheckoutModalOpen = true;
+    if (this.cartItems.length === 0) {
+      alert('Your cart is currently empty!'); // Thông báo nếu giỏ hàng trống
+      return; // Ngừng thực hiện hàm nếu giỏ hàng trống
+    }
+
+    // Mở modal thanh toán ở đây
+    this.isCheckoutModalOpen = true; // Đặt trạng thái modal thanh toán là true để mở modal
+    this.toggleCartModal(); // Đóng modal giỏ hàng
   }
 
   toggleCheckoutModal(): void {
+    this.isCartEmpty = this.cartItems.length === 0;
     this.isCheckoutModalOpen = !this.isCheckoutModalOpen;
   }
 
@@ -159,7 +206,7 @@ export class MenuComponent implements OnInit {
       this.isCheckoutModalOpen = false;
       this.isSuccessModalOpen = true;
     } else {
-      alert('Please fill in all required information.');
+      alert('Please fill in all necessary information.');
     }
   }
 
