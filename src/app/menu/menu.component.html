@@ -155,15 +155,15 @@
   aria-labelledby="itemModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header d-flex align-items-center">
+      <div class="modal-header bg-dark text-white">
         <h5 class="modal-title" id="itemModalLabel">
           {{ selectedItem?.name }}
         </h5>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close btn-close-white"
           data-bs-dismiss="modal"
           aria-label="Close"
         ></button>
@@ -180,44 +180,94 @@
                 '/' +
                 selectedItem?.image
               "
-              class="img-fluid modal-image"
+              class="img-fluid modal-image rounded"
               alt="{{ selectedItem?.name }}"
             />
           </div>
           <div class="col-8">
-            <p class="modal-desc mt-3" style="font-size: 2rem">
+            <p class="modal-desc text-muted mb-3">
               {{ selectedItem?.description }}
             </p>
-            <p class="fw-bold" style="font-size: 2rem">
+            <p class="fw-bold display-6">
               {{ selectedItem?.price | number : "1.0-0" }} ₫
             </p>
+
+            <!-- Quantity Selection -->
+            <div class="quantity-selector mt-3">
+              <label for="itemQuantity" class="form-label fw-bold"
+                >Quantity:</label
+              >
+              <div class="input-group input-group-sm">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  (click)="decreaseModalQuantity()"
+                >
+                  −
+                </button>
+                <input
+                  id="itemQuantity"
+                  type="number"
+                  class="form-control text-center"
+                  [(ngModel)]="modalQuantity"
+                  (input)="onQuantityInputChange()"
+                  style="width: 50px"
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  (click)="increaseModalQuantity()"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <!-- Sugar Level Selection -->
+            <div class="sugar-level mt-3">
+              <label for="sugarLevel" class="form-label fw-bold"
+                >Sugar Level:</label
+              >
+              <select
+                id="sugarLevel"
+                class="form-select"
+                [(ngModel)]="sugarLevel"
+                (change)="setSugarLevel(sugarLevel)"
+              >
+                <option value="no-sugar">No Sugar</option>
+                <option value="less">Less</option>
+                <option value="normal">Normal</option>
+                <option value="extra">Extra</option>
+              </select>
+            </div>
+
+            <!-- Ice Level Selection -->
+            <div class="ice-level mt-3">
+              <label for="iceLevel" class="form-label fw-bold"
+                >Ice Level:</label
+              >
+              <select
+                id="iceLevel"
+                class="form-select"
+                [(ngModel)]="iceLevel"
+                (change)="setIceLevel(iceLevel)"
+              >
+                <option value="no-ice">No Ice</option>
+                <option value="less">Less</option>
+                <option value="normal">Normal</option>
+                <option value="extra">Extra</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="cartBtn" (click)="addToCart()" data-bs-dismiss="modal">
-          <svg
-            class="cart"
-            fill="white"
-            viewBox="0 0 576 512"
-            height="1em"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-            ></path>
-          </svg>
+        <button
+          class="btn btn-primary w-100 py-2"
+          (click)="addToCart()"
+          data-bs-dismiss="modal"
+        >
           ADD TO CART
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="1em"
-            viewBox="0 0 640 512"
-            class="product"
-          >
-            <path
-              d="M211.8 0c7.8 0 14.3 5.7 16.7 13.2C240.8 51.9 277.1 80 320 80s79.2-28.1 91.5-66.8C413.9 5.7 420.4 0 428.2 0h12.6c22.5 0 44.2 7.9 61.5 22.3L628.5 127.4c6.6 5.5 10.7 13.5 11.4 22.1s-2.1 17.1-7.8 23.6l-56 64c-11.4 13.1-31.2 14.6-44.6 3.5L480 197.7V448c0 35.3-28.7 64-64 64H224c-35.3 0-64-28.7-64-64V197.7l-51.5 43.4c-13.4 11.1-33.2 9.6-44.6-3.5l-56-64c-5.7-6.5-8.7-14.9-7.8-23.6s4.8-16.6 11.4-22.1L138 22.3C155.3 7.9 177 0 199.5 0h12.6z"
-            />
-          </svg>
         </button>
       </div>
     </div>
@@ -234,35 +284,234 @@
   [ngClass]="{ show: isCartModalOpen }"
   [style.display]="isCartModalOpen ? 'block' : 'none'"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="cartModalLabel">Giỏ hàng</h5>
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="cartModalLabel">Your Shopping Cart</h5>
         <button
           type="button"
-          class="btn-close"
+          class="btn-close btn-close-white"
           (click)="toggleCartModal()"
         ></button>
       </div>
       <div class="modal-body">
-        <div *ngIf="cartItems.length === 0">Giỏ hàng của bạn đang trống!</div>
-        <div *ngFor="let item of cartItems" class="cart-item">
-          <p>
-            <strong>{{ item.name }}</strong>
-          </p>
-          <p>{{ item.price | number : "1.0-0" }} ₫</p>
-          <p>{{ item.description }}</p>
+        <div *ngIf="cartItems.length === 0" class="text-center py-3">
+          <p class="text-muted">Your cart is empty!</p>
         </div>
+        <div
+          *ngFor="let item of cartItems"
+          class="cart-item d-flex align-items-center mb-3 p-2 border-bottom"
+        >
+          <img
+            [src]="
+              '../../assets/imgs/menu/' +
+              item.main_group +
+              '/' +
+              item.sub_group +
+              '/' +
+              item.image
+            "
+            alt="{{ item.name }}"
+            class="cart-item-image rounded me-3"
+            style="width: 80px; height: 80px; object-fit: cover"
+          />
+          <div class="flex-grow-1">
+            <p class="fw-bold mb-1 text-capitalize">{{ item.name }}</p>
+            <p class="text-muted mb-1">{{ item.price | number : "1.0-0" }} ₫</p>
+            <p class="mb-1">
+              Sugar Level:
+              <span class="text-capitalize">{{ item.sugarLevel }}</span>
+            </p>
+            <p>
+              Ice Level:
+              <span class="text-capitalize">{{ item.iceLevel }}</span>
+            </p>
+          </div>
+          <!-- Quantity Controls -->
+          <div class="quantity-controls ms-3">
+            <div class="input-group input-group-sm">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="decreaseQuantity(item)"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                class="form-control text-center"
+                [(ngModel)]="item.quantity"
+                (input)="updateCartCount(); calculateTotalPrice()"
+                style="width: 50px"
+              />
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="increaseQuantity(item)"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="mt-3">
+          <label for="orderNotes" class="form-label fw-bold"
+            >Order Notes:</label
+          >
+          <textarea
+            id="orderNotes"
+            class="form-control"
+            [(ngModel)]="orderNotes"
+            rows="3"
+            placeholder="Add any special instructions or notes for your order"
+          ></textarea>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-between">
+        <div>
+          <h5 class="mb-0">
+            Total Price: {{ totalPrice | number : "1.0-0" }} ₫
+          </h5>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="checkout()">
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div
+  class="modal fade"
+  id="checkoutModal"
+  tabindex="-1"
+  aria-labelledby="checkoutModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isCheckoutModalOpen }"
+  [style.display]="isCheckoutModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="checkoutModalLabel">Order Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="toggleCheckoutModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Choose Service Type -->
+        <div class="mb-3">
+          <label class="form-label">Choose Service Type:</label>
+          <select class="form-select" [(ngModel)]="serviceType">
+            <option value="dineIn">Dine In</option>
+            <option value="delivery">Delivery</option>
+          </select>
+        </div>
+
+        <!-- Dine In Form -->
+        <div *ngIf="serviceType === 'dineIn'">
+          <div class="mb-3">
+            <label class="form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="customerName"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone Number:</label>
+            <input
+              type="tel"
+              class="form-control"
+              [(ngModel)]="customerPhone"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Payment Method:</label>
+            <select class="form-select" [(ngModel)]="paymentMethod">
+              <option value="cash">Cash</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Delivery Form -->
+        <div *ngIf="serviceType === 'delivery'">
+          <div class="mb-3">
+            <label class="form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="customerName"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone Number:</label>
+            <input
+              type="tel"
+              class="form-control"
+              [(ngModel)]="customerPhone"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Address:</label>
+            <textarea
+              class="form-control"
+              [(ngModel)]="deliveryAddress"
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Payment Method:</label>
+            <select class="form-select" [(ngModel)]="paymentMethod">
+              <option value="cash">Cash on Delivery</option>
+              <option value="card">Card</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="confirmOrder()">
+          Confirm Order
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Popup -->
+<div
+  class="modal fade"
+  id="successModal"
+  tabindex="-1"
+  aria-labelledby="successModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isSuccessModalOpen }"
+  [style.display]="isSuccessModalOpen ? 'block' : 'none'"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Order Successful</h5>
+      </div>
+      <div class="modal-body text-center">
+        <p>Thank you for your order!</p>
+        <p>
+          Your queue number is: <strong>{{ queueNumber }}</strong>
+        </p>
       </div>
       <div class="modal-footer">
         <button
           type="button"
-          class="btn btn-secondary"
-          (click)="toggleCartModal()"
+          class="btn btn-primary"
+          (click)="closeSuccessModal()"
         >
-          Đóng
+          OK
         </button>
-        <button type="button" class="btn btn-primary">Thanh toán</button>
       </div>
     </div>
   </div>
