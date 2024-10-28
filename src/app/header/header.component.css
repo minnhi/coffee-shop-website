@@ -6,7 +6,7 @@
 #header-carousel img {
   object-fit: cover;
   object-position: top;
-  max-height: 75vh;
+  max-height: 100vh;
 }
 
 .header__hero {

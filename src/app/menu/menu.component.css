@@ -1,6 +1,7 @@
 .menu {
   padding: 7rem 0;
-  background: #F1DEC9;
+  /* background: #F1DEC9; */
+  background: #fff;
   text-transform: capitalize;
 }
 
@@ -22,6 +23,11 @@
   background: var(--primary-color);
   border-radius: 1rem;
   cursor: pointer;
+}
+
+.menu .list-item .item:hover {
+  transform: scale(1.05);
+  transition: transform .5s;
 }
 
 .menu .list-item:hover> :not(:hover) {
@@ -243,4 +249,10 @@ input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    padding-top: 6rem;
+  }
 }

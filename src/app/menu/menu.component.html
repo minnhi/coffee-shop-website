@@ -1,5 +1,5 @@
 <section class="menu" id="product">
-  <div class="container-fluid">
+  <div class="container-xxl">
     <div class="row text-center">
       <h4 class="heading fw-bold">menu</h4>
     </div>
@@ -10,6 +10,7 @@
         id="responsive-menu"
         [(ngModel)]="selectedValue"
         (change)="applyFilter()"
+        style="background: #f6eee6; padding: 0.5rem"
       >
         <option value="">all</option>
         <option value="coffee">coffee</option>
@@ -23,7 +24,7 @@
     <!-- Sidebar for Desktop Screens -->
     <div class="row">
       <div class="col-md-2 d-none d-md-block mt-5">
-        <aside class="sidebar-menu mt-5">
+        <aside class="sidebar-menu mt-5 shadow">
           <ul class="d-flex flex-column gap-3">
             <li>
               <button class="sidebar-menu-item" (click)="applyFilter('all')">
@@ -106,10 +107,11 @@
         <div class="row row-cols-2 row-cols-md-4 px-2 mt-2 g-3 list-item">
           <div class="col" *ngFor="let item of filteredItems">
             <div
-              class="card"
+              class="card item"
               (click)="openModal(item)"
               data-bs-toggle="modal"
               data-bs-target="#itemModal"
+              style="background: #f6eee6"
             >
               <img
                 [src]="
@@ -125,7 +127,7 @@
               />
               <div class="card-body">
                 <h5 class="card-title item-name fw-bold">{{ item.name }}</h5>
-                <p class="card-text item-price mt-2">
+                <p class="card-text item-price mt-2 text-danger">
                   <strong>{{ item.price | number : "1.0-0" }} ₫</strong>
                 </p>
                 <p class="card-text item-desc mt-2">{{ item.description }}</p>
@@ -217,6 +219,8 @@
                   [(ngModel)]="modalQuantity"
                   (input)="onQuantityInputChange()"
                   style="font-size: 2rem"
+                  min="1"
+                  max="99"
                 />
                 <button
                   type="button"

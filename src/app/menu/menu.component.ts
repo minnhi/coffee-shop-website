@@ -7,43 +7,45 @@ import { MenuService } from './menu.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  // Member variables
-  menuItems: any[] = [];
-  filteredItems: any[] = [];
-  selectedValue: string = '';
-  selectedItem: any = null;
-  cartItems: any[] = [];
-  cartCount: number = 0;
+  // Các biến thành viên
+  menuItems: any[] = []; // Danh sách các món ăn
+  filteredItems: any[] = []; // Danh sách các món ăn sau khi lọc
+  selectedValue: string = ''; // Giá trị lọc đã chọn
+  selectedItem: any = null; // Món ăn được chọn trong Modal
+  cartItems: any[] = []; // Danh sách các món trong giỏ hàng
+  cartCount: number = 0; // Số lượng món trong giỏ hàng
 
-  isCartModalOpen: boolean = false;
-  isCheckoutModalOpen: boolean = false;
-  isCartEmpty: boolean = false;
-  isSuccessModalOpen: boolean = false;
+  isCartModalOpen: boolean = false; // Trạng thái mở/đóng của Modal giỏ hàng
+  isCheckoutModalOpen: boolean = false; // Trạng thái mở/đóng của Modal thanh toán
+  isCartEmpty: boolean = false; // Trạng thái giỏ hàng rỗng
+  isSuccessModalOpen: boolean = false; // Trạng thái mở/đóng của Modal thành công
 
-  // Custom order information
-  sugarLevel: string = 'normal';
-  iceLevel: string = 'normal';
-  modalQuantity: number = 1;
-  orderNotes: string = '';
-  totalPrice: number = 0;
-  showNotes: boolean = false;
+  // Thông tin đơn hàng tùy chỉnh
+  sugarLevel: string = 'normal'; // Mức độ đường
+  iceLevel: string = 'normal'; // Mức độ đá
+  modalQuantity: number = 1; // Số lượng món
+  orderNotes: string = ''; // Ghi chú đơn hàng
+  totalPrice: number = 0; // Tổng giá tiền
+  showNotes: boolean = false; // Hiển thị ghi chú
 
-  // Customer payment details
-  serviceType: string = 'dineIn';
-  customerName: string = '';
-  customerPhone: string = '';
-  deliveryAddress: string = '';
-  paymentMethod: string = 'cash';
-  queueNumber: number = 0;
+  // Thông tin khách hàng
+  serviceType: string = 'dineIn'; // Loại hình dịch vụ (ăn tại chỗ, giao hàng)
+  customerName: string = ''; // Tên khách hàng
+  customerPhone: string = ''; // Số điện thoại khách hàng
+  deliveryAddress: string = ''; // Địa chỉ giao hàng
+  paymentMethod: string = 'cash'; // Phương thức thanh toán
+  queueNumber: number = 0; // Số thứ tự đơn hàng
 
   constructor(private menuService: MenuService) {}
 
   ngOnInit(): void {
+    // Lấy danh sách menu từ service khi khởi tạo
     this.menuService.getMenu().subscribe((data) => {
       this.menuItems = data;
       this.applyFilter();
     });
 
+    // Lấy thông tin người dùng từ sessionStorage
     const userDetails = sessionStorage.getItem('userDetails');
     if (userDetails) {
       const user = JSON.parse(userDetails);
@@ -51,9 +53,11 @@ export class MenuComponent implements OnInit {
       this.customerPhone = user.username || '';
     }
 
+    // Tải giỏ hàng từ sessionStorage
     this.loadCartFromSessionStorage();
   }
 
+  // Tải giỏ hàng từ sessionStorage
   loadCartFromSessionStorage(): void {
     const username = sessionStorage.getItem('username');
     if (username) {
@@ -90,7 +94,7 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  // Logic for filtering menu items
+  // Áp dụng bộ lọc cho menu
   applyFilter(mainGroup: string = 'all', subGroup?: string): void {
     const filterValue = this.selectedValue || mainGroup;
     this.filteredItems = this.menuItems.filter((item) => {
@@ -101,7 +105,7 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  // Modal management
+  // Quản lý Modal
   openModal(item: any): void {
     this.selectedItem = item;
     this.sugarLevel = 'normal';
@@ -117,17 +121,20 @@ export class MenuComponent implements OnInit {
     this.iceLevel = level;
   }
 
-  increaseModalQuantity(): void {
-    this.modalQuantity += 1;
-  }
-
-  decreaseModalQuantity(): void {
-    if (this.modalQuantity > 1) {
-      this.modalQuantity -= 1;
+  // Tăng/Giảm số lượng trong Modal
+  increaseModalQuantity() {
+    if (this.modalQuantity < 99) {
+      this.modalQuantity++;
     }
   }
 
-  // Cart management
+  decreaseModalQuantity() {
+    if (this.modalQuantity > 1) {
+      this.modalQuantity--;
+    }
+  }
+
+  // Quản lý giỏ hàng
   addToCart(): void {
     if (this.selectedItem) {
       const existingItem = this.cartItems.find(
@@ -220,10 +227,10 @@ export class MenuComponent implements OnInit {
       this.isCheckoutModalOpen = false;
       this.isSuccessModalOpen = true;
 
-      // Accumulate points for the user
+      // Tích lũy điểm cho người dùng
       this.accumulatePoints();
 
-      // Clear the cart after successful checkout
+      // Xóa giỏ hàng sau khi thanh toán thành công
       this.cartItems = [];
       this.cartCount = 0;
       this.totalPrice = 0;
@@ -234,18 +241,14 @@ export class MenuComponent implements OnInit {
   }
 
   accumulatePoints(): void {
-    // Calculate points based on total price (1 point per 1000)
     const pointsToAdd = Math.floor(this.totalPrice / 1000);
 
-    // Get current user details from sessionStorage
     const userDetails = sessionStorage.getItem('userDetails');
     if (userDetails) {
       const user = JSON.parse(userDetails);
 
-      // Update accumulated points
       user.accumulatedPoints = (user.accumulatedPoints || 0) + pointsToAdd;
 
-      // Update membership level based on accumulated points
       if (user.accumulatedPoints >= 100) {
         user.membershipLevel = 'Gold';
       } else if (user.accumulatedPoints >= 50) {
@@ -254,7 +257,6 @@ export class MenuComponent implements OnInit {
         user.membershipLevel = 'Basic';
       }
 
-      // Save updated user details back to sessionStorage
       sessionStorage.setItem('userDetails', JSON.stringify(user));
     }
   }
