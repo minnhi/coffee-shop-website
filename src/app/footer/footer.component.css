@@ -5,24 +5,17 @@
 .info__name,
 .footer-links__title,
 .footer__subscribe-form {
-  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 3rem;
 }
 
 .info__desc {
-  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 1.6rem;
   text-align: justify;
-}
-
-.info__contact {
-  text-shadow: 1px 1px 1px var(--primary-color);
 }
 
 .info__link {
   text-decoration: none;
   color: var(--sub-color);
-  text-shadow: 1px 1px 1px var(--primary-color);
 }
 
 .info__link:hover {
@@ -42,7 +35,6 @@
   border: none;
   padding: 1rem;
   margin-left: 2rem;
-  text-shadow: 1px 1px 1px var(--primary-color);
   font-size: 2rem;
 }
 

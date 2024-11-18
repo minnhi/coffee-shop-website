@@ -15,7 +15,6 @@
   transform: translate(-50%, -50%);
 }
 
-/* Responsive */
 @media (max-width: 769px) {
   .header {
     padding-top: 5rem;

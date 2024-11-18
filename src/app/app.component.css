@@ -2,22 +2,12 @@
 
 :root {
   --main-bg-color-dark: #3E2723;
-  --main-bg-color-light: #8D6E63;
-  --beige-light: #FFF8E1;
-  --cream: #FFF9C4;
-  --orange-light: #FFE0B2;
-  --terracotta: #D95B43;
-  --green-dark: #1B5E20;
-  --olive-dark: #4B5320;
   --text-color-dark: #3E2723;
-  --text-color-light: #FFFFFF;
-  --button-color-light: #FFE0B2;
-  --header-color: #3E2723;
   --main-font-family: 'Abhaya Libre', serif;
-  --text-shadow: 1px 1px 2px #000;
+  --primary-color: #D95B43;
+  /* You may adjust this color based on your design needs */
 }
 
-/* CSS Reset */
 * {
   margin: 0;
   border: 0;
@@ -38,7 +28,6 @@ body {
   scrollbar-width: none;
 }
 
-/* Ẩn thanh cuộn trên Webkit (Chrome, Safari, Opera) */
 html::-webkit-scrollbar {
   display: none;
 }
@@ -47,8 +36,8 @@ body {
   width: 100dvw;
   overflow-y: auto;
   background: #C8B6A6;
-  color: var(--sub-color);
-  font-family: 'Abhaya Libre', serif;
+  color: var(--text-color-dark);
+  font-family: var(--main-font-family);
   font-size: 1.6rem;
 }
 
